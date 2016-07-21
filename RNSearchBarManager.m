@@ -43,12 +43,6 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_VIEW_PROPERTY(placeholder, NSString)
 RCT_EXPORT_VIEW_PROPERTY(text, NSString)
-RCT_CUSTOM_VIEW_PROPERTY(showsCancelButton, BOOL, RNSearchBar)
-{
-    BOOL value = [RCTConvert BOOL:json];
-    view._jsShowsCancelButton = value;
-    view.showsCancelButton = value;
-}
 RCT_EXPORT_VIEW_PROPERTY(barTintColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(tintColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(enablesReturnKeyAutomatically, BOOL)
@@ -149,6 +143,20 @@ RCT_EXPORT_METHOD(unFocus:(nonnull NSNumber *)reactTag)
      } else {
        RCTLogError(@"Cannot unFocus: %@ (tag #%@) is not RNSearchBar", searchBar, reactTag);
      }
+   }];
+}
+
+RCT_EXPORT_METHOD(toggleCancelButton:(nonnull NSNumber *)reactTag  flag:(BOOL *)flag)
+{
+  [self.bridge.uiManager addUIBlock:
+   ^(__unused RCTUIManager *uiManager, NSDictionary *viewRegistry){
+       RNSearchBar *searchBar = viewRegistry[reactTag];
+
+       if ([searchBar isKindOfClass:[RNSearchBar class]]) {
+           [searchBar setShowsCancelButton:flag ? YES : NO animated:YES];
+       } else {
+           RCTLogError(@"Cannot toggle: %@ (tag #%@) is not RNSearchBar", searchBar, reactTag);
+       }
    }];
 }
 

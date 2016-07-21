@@ -35,9 +35,6 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-  [self setShowsCancelButton:self._jsShowsCancelButton animated:YES];
-
-
   [_eventDispatcher sendTextEventWithType:RCTTextEventTypeFocus
                                  reactTag:self.reactTag
                                      text:searchBar.text
@@ -72,7 +69,6 @@
 {
   self.text = @"";
   [self resignFirstResponder];
-  [self setShowsCancelButton:NO animated:YES];
 
   NSDictionary *event = @{
                           @"target": self.reactTag,
