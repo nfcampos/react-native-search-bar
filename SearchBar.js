@@ -63,9 +63,9 @@ SearchBar = React.createClass({
   unFocus: function() {
     return NativeModules.RNSearchBarManager.unFocus(ReactNative.findNodeHandle(this));
   },
-  componentDidUpdate (prevProps) {
-    if (prevProps.showsCancelButton !== this.props.showsCancelButton) {
-      NativeModules.RNSearchBarManager.toggleCancelButton(ReactNative.findNodeHandle(this), this.props.showsCancelButton);
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.showsCancelButton !== this.props.showsCancelButton) {
+      NativeModules.RNSearchBarManager.toggleCancelButton(ReactNative.findNodeHandle(this), nextProps.showsCancelButton);
     }
   },
   render: function() {
