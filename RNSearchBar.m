@@ -62,6 +62,7 @@
                           };
 
   [_eventDispatcher sendInputEventWithName:@"press" body:event];
+  UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, searchBar);
 }
 
 
