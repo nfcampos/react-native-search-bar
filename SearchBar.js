@@ -4,6 +4,8 @@ React = require('react');
 
 ReactNative = require('react-native');
 
+var TextInputState = require('react-native/lib/TextInputState');
+
 RNSearchBar = ReactNative.requireNativeComponent('RNSearchBar', null);
 
 PropTypes = React.PropTypes;
@@ -60,6 +62,14 @@ SearchBar = React.createClass({
       return typeof (base1 = this.props).onCancelButtonPress === "function" ? base1.onCancelButtonPress() : void 0;
     }
   },
+  _onFocus: function() {
+    TextInputState._currentlyFocusedID = ReactNative.findNodeHandle(this);
+    if (this.props.onFocus) this.props.onFocus.apply(null, arguments);
+  },
+  _onBlur: function() {
+    TextInputState._currentlyFocusedID = null;
+    if (this.props.onBlur) this.props.onBlur.apply(null, arguments);
+  },
   blur: function() {
     return NativeModules.RNSearchBarManager.blur(ReactNative.findNodeHandle(this));
   },
@@ -80,6 +90,8 @@ SearchBar = React.createClass({
       onChange={this._onChange}
       onPress={this._onPress}
       {...this.props}
+      onFocus={this._onFocus}
+      onBlur={this._onBlur}
     />;
   }
 });
