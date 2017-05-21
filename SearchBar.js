@@ -14,7 +14,7 @@ NativeModules = ReactNative.NativeModules;
 
 StyleSheet = ReactNative.StyleSheet
 
-class SearchBar extends React.Component {
+class SearchBar extends React.PureComponent {
   _onChange(e) {
     var base, base1;
     if (typeof (base = this.props).onChange === "function") {
