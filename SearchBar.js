@@ -1,4 +1,4 @@
-var NativeModules, PropTypes, RNSearchBar, React, ReactNative, SearchBar;
+var NativeModules, PropTypes, RNSearchBar, React, ReactNative, StyleSheet SearchBar;
 
 React = require('react');
 
@@ -11,6 +11,8 @@ RNSearchBar = ReactNative.requireNativeComponent('RNSearchBar', null);
 PropTypes = require('prop-types');
 
 NativeModules = ReactNative.NativeModules;
+
+StyleSheet = ReactNative.StyleSheet
 
 class SearchBar extends React.Component {
   _onChange(e) {
@@ -61,7 +63,7 @@ class SearchBar extends React.Component {
 
   render() {
     return <RNSearchBar
-      style={{height: NativeModules.RNSearchBarManager.ComponentHeight}}
+      style={styles.root}
       onChange={this._onChange}
       onPress={this._onPress}
       {...this.props}
@@ -70,6 +72,10 @@ class SearchBar extends React.Component {
     />;
   }
 });
+
+var styles = StyleSheet.create({
+  root: {height: NativeModules.RNSearchBarManager.ComponentHeight}
+})
 
 SearchBar.propTypes = {
   placeholder: PropTypes.string,
