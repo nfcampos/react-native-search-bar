@@ -15,7 +15,7 @@ NativeModules = ReactNative.NativeModules;
 StyleSheet = ReactNative.StyleSheet;
 
 class SearchBar extends React.PureComponent {
-  _onChange(e) {
+  _onChange = (e) => {
     var base, base1;
     if (typeof (base = this.props).onChange === "function") {
       base.onChange(e);
@@ -23,7 +23,7 @@ class SearchBar extends React.PureComponent {
     return typeof (base1 = this.props).onChangeText === "function" ? base1.onChangeText(e.nativeEvent.text) : void 0;
   }
 
-  _onPress(e) {
+  _onPress = (e) => {
     var base, base1, button;
     button = e.nativeEvent.button;
     if (button === 'search') {
@@ -33,12 +33,12 @@ class SearchBar extends React.PureComponent {
     }
   }
 
-  _onFocus() {
+  _onFocus = () => {
     TextInputState._currentlyFocusedID = ReactNative.findNodeHandle(this);
     if (this.props.onFocus) this.props.onFocus.apply(null, arguments);
   }
 
-  _onBlur() {
+  _onBlur = () => {
     TextInputState._currentlyFocusedID = null;
     if (this.props.onBlur) this.props.onBlur.apply(null, arguments);
   }
