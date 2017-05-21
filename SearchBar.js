@@ -71,7 +71,7 @@ class SearchBar extends React.PureComponent {
       onBlur={this._onBlur}
     />;
   }
-});
+}
 
 var styles = StyleSheet.create({
   root: {height: NativeModules.RNSearchBarManager.ComponentHeight}
