@@ -79,5 +79,17 @@
   [_eventDispatcher sendInputEventWithName:@"press" body:event];
 }
 
+- (void)enableCancelButton
+{
+  UIButton *cancelButton = (UIButton *)[self valueForKey:@"cancelButton"];
+  [cancelButton setEnabled:YES];
+}
+
+- (BOOL)resignFirstResponder
+{
+  BOOL ret = [super resignFirstResponder];
+  [self enableCancelButton];
+  return ret;
+}
 
 @end

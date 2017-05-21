@@ -165,6 +165,7 @@ RCT_EXPORT_METHOD(toggleCancelButton:(nonnull NSNumber *)reactTag  flag:(BOOL *)
 
        if ([searchBar isKindOfClass:[RNSearchBar class]]) {
            [searchBar setShowsCancelButton:flag ? YES : NO animated:YES];
+           [searchBar enableCancelButton];
        } else {
            RCTLogError(@"Cannot toggle: %@ (tag #%@) is not RNSearchBar", searchBar, reactTag);
        }

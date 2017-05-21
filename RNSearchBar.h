@@ -6,4 +6,6 @@
 
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher NS_DESIGNATED_INITIALIZER;
 
+- (void)enableCancelButton;
+
 @end
